@@ -1,0 +1,6 @@
+@Stefan_Jesenko_LBM295API_HostAddress = http://localhost:5188
+
+GET {{Stefan_Jesenko_LBM295API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
