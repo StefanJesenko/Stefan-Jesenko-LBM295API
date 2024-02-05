@@ -3,7 +3,9 @@
 namespace Stefan_Jesenko_LBM295API.Models
 {
     public class PizzaDB : DbContext
+
     {
+       
         public DbSet<Pizza> Pizzen { get; set; }
         public DbSet<Zutaten> Zutaten { get; set; }
 
@@ -13,5 +15,6 @@ namespace Stefan_Jesenko_LBM295API.Models
             base.OnConfiguring(optionsBuilder);
 
         }
+        
     }
 }

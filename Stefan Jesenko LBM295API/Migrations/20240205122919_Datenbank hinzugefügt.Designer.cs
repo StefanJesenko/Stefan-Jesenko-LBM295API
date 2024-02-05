@@ -11,8 +11,8 @@ using Stefan_Jesenko_LBM295API.Models;
 namespace Stefan_Jesenko_LBM295API.Migrations
 {
     [DbContext(typeof(PizzaDB))]
-    [Migration("20240205093441_PizzaDbErstellt")]
-    partial class PizzaDbErstellt
+    [Migration("20240205122919_Datenbank hinzugefügt")]
+    partial class Datenbankhinzugefügt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,21 +23,6 @@ namespace Stefan_Jesenko_LBM295API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("PizzaZutaten", b =>
-                {
-                    b.Property<int>("PizzaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ZutatensId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PizzaId", "ZutatensId");
-
-                    b.HasIndex("ZutatensId");
-
-                    b.ToTable("PizzaZutaten");
-                });
 
             modelBuilder.Entity("Stefan_Jesenko_LBM295API.Models.Pizza", b =>
                 {
@@ -71,21 +56,6 @@ namespace Stefan_Jesenko_LBM295API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Zutaten");
-                });
-
-            modelBuilder.Entity("PizzaZutaten", b =>
-                {
-                    b.HasOne("Stefan_Jesenko_LBM295API.Models.Pizza", null)
-                        .WithMany()
-                        .HasForeignKey("PizzaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Stefan_Jesenko_LBM295API.Models.Zutaten", null)
-                        .WithMany()
-                        .HasForeignKey("ZutatensId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

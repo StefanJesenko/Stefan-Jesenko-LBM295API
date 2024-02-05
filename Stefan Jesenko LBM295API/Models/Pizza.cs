@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string PizzaName { get; set; }
 
-        public List<Zutaten> Zutatens { get; set; } = new List<Zutaten>();
+        //public List<Zutaten> Zutatens { get; set; } = new List<Zutaten>();
     }
 }
