@@ -11,8 +11,8 @@ using Stefan_Jesenko_LBM295API.Models;
 namespace Stefan_Jesenko_LBM295API.Migrations
 {
     [DbContext(typeof(PizzaDB))]
-    [Migration("20240205122919_Datenbank hinzugefügt")]
-    partial class Datenbankhinzugefügt
+    [Migration("20240206102440_hinzufügen")]
+    partial class hinzufügen
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,6 +39,25 @@ namespace Stefan_Jesenko_LBM295API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Pizzen");
+                });
+
+            modelBuilder.Entity("Stefan_Jesenko_LBM295API.Models.PizzaZutaten", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PizzaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ZutatenId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PizzaZutaten");
                 });
 
             modelBuilder.Entity("Stefan_Jesenko_LBM295API.Models.Zutaten", b =>

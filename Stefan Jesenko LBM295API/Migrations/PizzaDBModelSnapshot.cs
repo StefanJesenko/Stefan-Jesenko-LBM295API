@@ -38,6 +38,25 @@ namespace Stefan_Jesenko_LBM295API.Migrations
                     b.ToTable("Pizzen");
                 });
 
+            modelBuilder.Entity("Stefan_Jesenko_LBM295API.Models.PizzaZutaten", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PizzaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ZutatenId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PizzaZutaten");
+                });
+
             modelBuilder.Entity("Stefan_Jesenko_LBM295API.Models.Zutaten", b =>
                 {
                     b.Property<int>("Id")

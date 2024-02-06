@@ -8,9 +8,11 @@ namespace Stefan_Jesenko_LBM295API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CRUDController : ControllerBase
+    public class PizzaController : ControllerBase
     {
-       
+        
+
+
         [HttpPost]
         [Authorize]
         public async Task<ActionResult<Pizza>> AddPizza(Pizza pizza)
@@ -104,7 +106,20 @@ namespace Stefan_Jesenko_LBM295API.Controllers
 
 
 
+        
+
+
+
 
 
     }
+
+
+
+
+
 }
+
+
+
+

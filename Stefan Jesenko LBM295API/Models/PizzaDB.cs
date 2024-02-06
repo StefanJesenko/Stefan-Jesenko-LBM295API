@@ -8,13 +8,16 @@ namespace Stefan_Jesenko_LBM295API.Models
        
         public DbSet<Pizza> Pizzen { get; set; }
         public DbSet<Zutaten> Zutaten { get; set; }
+        public DbSet<PizzaZutaten> PizzaZutaten { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PizzaDb;Trusted_Connection=True");
             base.OnConfiguring(optionsBuilder);
 
         }
         
+
     }
 }
