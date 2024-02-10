@@ -11,8 +11,8 @@ using Stefan_Jesenko_LBM295API.Models;
 namespace Stefan_Jesenko_LBM295API.Migrations
 {
     [DbContext(typeof(PizzaDB))]
-    [Migration("20240206102440_hinzufügen")]
-    partial class hinzufügen
+    [Migration("20240209091623_update relation")]
+    partial class Updaterelation
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,9 +32,14 @@ namespace Stefan_Jesenko_LBM295API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("PizzaName")
+                    b.Property<string>("Herkunftsregion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PizzaName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -57,6 +62,10 @@ namespace Stefan_Jesenko_LBM295API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PizzaId");
+
+                    b.HasIndex("ZutatenId");
+
                     b.ToTable("PizzaZutaten");
                 });
 
@@ -68,13 +77,33 @@ namespace Stefan_Jesenko_LBM295API.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Zutat")
+                    b.Property<string>("Herkunftsland")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zutat")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Zutaten");
+                });
+
+            modelBuilder.Entity("Stefan_Jesenko_LBM295API.Models.PizzaZutaten", b =>
+                {
+                    b.HasOne("Stefan_Jesenko_LBM295API.Models.Pizza", null)
+                        .WithMany()
+                        .HasForeignKey("PizzaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Stefan_Jesenko_LBM295API.Models.Zutaten", null)
+                        .WithMany()
+                        .HasForeignKey("ZutatenId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

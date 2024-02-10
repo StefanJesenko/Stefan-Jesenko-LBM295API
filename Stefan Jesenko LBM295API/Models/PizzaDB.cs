@@ -17,7 +17,24 @@ namespace Stefan_Jesenko_LBM295API.Models
             base.OnConfiguring(optionsBuilder);
 
         }
-        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            
+            modelBuilder.Entity<PizzaZutaten>()
+                .HasOne<Pizza>()
+                .WithMany()
+                .HasForeignKey(pz => pz.PizzaId)
+                .OnDelete(DeleteBehavior.Cascade); 
+
+            modelBuilder.Entity<PizzaZutaten>()
+                .HasOne<Zutaten>()
+                .WithMany()
+                .HasForeignKey(pz => pz.ZutatenId)
+                .OnDelete(DeleteBehavior.Cascade); 
+        }
+
 
     }
 }
